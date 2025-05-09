@@ -39,7 +39,7 @@ const Column = ({
         </div>
       </div>
       <div
-        className="p-4 min-h-[200px]"
+        className="p-4 h-full"
         onDragOver={onDragOver}
         onDrop={(e) => onDrop(e, status)}
       >

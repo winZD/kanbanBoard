@@ -11,7 +11,7 @@ import {
 
 const Header = () => {
   return (
-    <div className="flex w-full flex-row justify-between items-start sm:items-center h-14 mb-8 ">
+    <div className="flex  w-full flex-row justify-between items-start sm:items-center h-14 mb-8 ">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>

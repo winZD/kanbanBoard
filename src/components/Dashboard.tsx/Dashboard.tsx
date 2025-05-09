@@ -72,27 +72,29 @@ const Dashboard = () => {
     <div className="flex flex-col w-full h-full">
       <div className="flex">
         <div className="flex justify-between border-2 w-full">
-          <img src={Placeholder} />
-          <div>
-            <h1>Project Planet X</h1>
-            <Card className="p-2 flex flex-row justify-center">
-              <button className="flex flex-row">
-                <Grid />
-                Grid View
-              </button>
-              <button className="flex flex-row">
-                <Grid />
-                List View
-              </button>
-              <button className="flex flex-row">
-                <Grid />
-                Column View
-              </button>
-              <button className="flex flex-row">
-                <Grid />
-                Row View
-              </button>
-            </Card>
+          <div className="flex flex-row">
+            <img src={Placeholder} />
+            <div className="flex flex-col">
+              <h1>Project Planet X</h1>
+              <Card className="p-2 flex flex-row justify-center">
+                <button className="flex flex-row">
+                  <Grid />
+                  Grid View
+                </button>
+                <button className="flex flex-row">
+                  <Grid />
+                  List View
+                </button>
+                <button className="flex flex-row">
+                  <Grid />
+                  Column View
+                </button>
+                <button className="flex flex-row">
+                  <Grid />
+                  Row View
+                </button>
+              </Card>
+            </div>
           </div>
 
           <div className="flex flex-col justify-center">
