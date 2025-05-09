@@ -1,12 +1,13 @@
-import { Divide, Grid, Plus, UploadCloud } from "lucide-react";
+import { Grid, Plus, UploadCloud } from "lucide-react";
 import Placeholder from "../../assets/PlaceholderLogo.svg";
 import { Card } from "../ui/card";
 import { useEffect, useState } from "react";
 import { fetchTasks } from "../../services/api";
-import type { Task } from "../../types";
+import type { Task, TaskStatus } from "../../types";
+import Column from "../Column/Column";
+import { useTasks } from "../../hooks/useTasks";
 const Dashboard = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
-
   useEffect(() => {
     const getTasks = async () => {
       try {
@@ -19,6 +20,53 @@ const Dashboard = () => {
 
     getTasks();
   }, []);
+  const { state, moveTask } = useTasks();
+  const [draggedTaskId, setDraggedTaskId] = useState<string | null>(null);
+
+  // Filter tasks by status
+  const todoTasks = state.tasks.filter((task: Task) => task.status === "todo");
+  const inProgressTasks = state.tasks.filter(
+    (task: Task) => task.status === "inProgress"
+  );
+  const doneTasks = state.tasks.filter((task: Task) => task.status === "done");
+
+  // Drag handlers
+  const handleDragStart = (e: React.DragEvent, taskId: string) => {
+    setDraggedTaskId(taskId);
+    e.dataTransfer.setData("taskId", taskId);
+    e.dataTransfer.effectAllowed = "move";
+  };
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault();
+    e.dataTransfer.dropEffect = "move";
+  };
+
+  const handleDrop = (e: React.DragEvent, status: TaskStatus) => {
+    e.preventDefault();
+    const taskId = e.dataTransfer.getData("taskId");
+
+    if (taskId) {
+      moveTask(taskId, status);
+    }
+
+    setDraggedTaskId(null);
+  };
+
+  if (state.isLoading) {
+    return (
+      <div className="flex items-center justify-center h-64">Loading...</div>
+    );
+  }
+
+  if (state.error) {
+    return (
+      <div className="text-red-500 text-center h-64 flex items-center justify-center">
+        Error: {state.error}
+      </div>
+    );
+  }
+
   console.log(tasks);
   return (
     <div className="flex flex-col w-full h-full">
@@ -59,27 +107,54 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <div className="grid grid-cols-3 p-2 gap-2">
-        <Card className=" bg-gray-200 flex flex-col">
+      <div className="grid md:grid-cols-3 p-2 gap-2">
+        {/*    <Card className=" bg-gray-200 flex flex-col p-2">
           <div className="flex  flex-row justify-between">
             <h3>TODO</h3>
             <button>
               <Plus />
             </button>
           </div>
-          {tasks
-            .filter((task) => task.status === "todo")
-            .map((task) => (
-              <div
-                key={task.id}
-                className="p-2 bg-white rounded shadow flex flex-col"
-              >
-                <h4>{task.title}</h4>
-                <p>{task.status}</p>
-              </div>
-            ))}
-        </Card>
-        <Card className=" bg-gray-200 flex flex-col">
+          <Column
+            title="To Do"
+            status="todo"
+            tasks={tasks}
+            color="bg-blue-500"
+            onDragStart={handleDragStart}
+            onDragOver={handleDragOver}
+            onDrop={handleDrop}
+          />
+        </Card> */}
+        <Column
+          title="To Do"
+          status="todo"
+          tasks={todoTasks}
+          color="bg-blue-500"
+          onDragStart={handleDragStart}
+          onDragOver={handleDragOver}
+          onDrop={handleDrop}
+        />
+
+        <Column
+          title="In Progress"
+          status="inProgress"
+          tasks={inProgressTasks}
+          color="bg-yellow-500"
+          onDragStart={handleDragStart}
+          onDragOver={handleDragOver}
+          onDrop={handleDrop}
+        />
+
+        <Column
+          title="Done"
+          status="done"
+          tasks={doneTasks}
+          color="bg-green-500"
+          onDragStart={handleDragStart}
+          onDragOver={handleDragOver}
+          onDrop={handleDrop}
+        />
+        {/*   <Card className=" bg-gray-200 flex flex-col p-2">
           <div className="flex  flex-row justify-between">
             <h3>In progress</h3>
             <button>
@@ -91,14 +166,14 @@ const Dashboard = () => {
             .map((task) => (
               <div
                 key={task.id}
-                className="p-2 bg-white rounded shadow flex flex-col"
+                className="p-2 bg-white rounded-2xl shadow flex flex-col"
               >
                 <h4>{task.title}</h4>
                 <p>{task.status}</p>
               </div>
             ))}
         </Card>
-        <Card className=" bg-gray-200 flex flex-col">
+        <Card className=" bg-gray-200 flex flex-col p-2">
           <div className="flex  flex-row justify-between">
             <h3>Done</h3>
             <button>
@@ -110,13 +185,13 @@ const Dashboard = () => {
             .map((task) => (
               <div
                 key={task.id}
-                className="p-2 bg-white rounded shadow flex flex-col"
+                className="p-2 bg-white rounded-2xl shadow flex flex-col"
               >
                 <h4>{task.title}</h4>
                 <p>{task.status}</p>
               </div>
             ))}
-        </Card>
+        </Card> */}
       </div>
     </div>
   );
