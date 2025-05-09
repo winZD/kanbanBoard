@@ -1,5 +1,5 @@
 // src/components/Board/Column.tsx
-import { MoreVertical } from "lucide-react";
+import { Plus } from "lucide-react";
 import { type Task as TaskType, type TaskStatus } from "../../types";
 import Task from "../Task/Task";
 
@@ -34,7 +34,7 @@ const Column = ({
             </span>
           </div>
           <button className="text-gray-400 hover:text-gray-600">
-            <MoreVertical size={18} />
+            <Plus />
           </button>
         </div>
       </div>
