@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { TaskStatus, Task as TaskType } from "../../types";
 import { Progress } from "../ui/progress";
 import Avatars from "../../assets/AvatarGroup.png";
 import Msg from "../../assets/vector2.png";
 import Check from "../../assets/vector3.svg";
+import { getRandomButton } from "../../utils/utils";
 
 interface TaskProps {
   task: TaskType;
@@ -41,6 +42,7 @@ const Task = ({ task, onDragStart, status }: TaskProps) => {
         return "[&>div]:bg-orange-500";
     }
   };
+  const randomButton = useMemo(() => getRandomButton(), []);
 
   return (
     <div
@@ -48,6 +50,13 @@ const Task = ({ task, onDragStart, status }: TaskProps) => {
       onDragStart={(e) => onDragStart(e, task.id)}
       className="bg-white border border-gray-200 flex flex-col p-4 rounded-lg mb-3 shadow-sm hover:shadow-md hover:bg-red-200 transition-shadow cursor-move"
     >
+      <div className="flex items-start justify-baseline">
+        {randomButton && (
+          <button className={`${randomButton.className}`}>
+            {randomButton.label}
+          </button>
+        )}
+      </div>
       <h4 className="text-gray-800 font-medium">{task.title}</h4>
       <p>Progress</p>
       <Progress value={progress} className={`w-[60%] ${statusColor(status)}`} />

@@ -23,7 +23,7 @@ const Column = ({
   onDrop,
 }: ColumnProps) => {
   return (
-    <div className="bg-white rounded-xl shadow-sm overflow-hidden">
+    <div className="bg-white rounded-xl shadow-sm">
       <div className="p-4 border-b border-gray-100">
         <div className="flex justify-between items-center">
           <div className="flex items-center">
