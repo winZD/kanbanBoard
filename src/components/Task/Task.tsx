@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import type { Task as TaskType } from "../../types";
+import type { TaskStatus, Task as TaskType } from "../../types";
 import { Progress } from "../ui/progress";
 import Avatars from "../../assets/AvatarGroup.png";
 import Msg from "../../assets/vector2.png";
@@ -8,14 +8,39 @@ import Check from "../../assets/vector3.svg";
 interface TaskProps {
   task: TaskType;
   onDragStart: (e: React.DragEvent, taskId: string) => void;
+  status: TaskStatus;
 }
 
-const Task = ({ task, onDragStart }: TaskProps) => {
-  const [progress, setProgress] = useState(12);
+const Task = ({ task, onDragStart, status }: TaskProps) => {
+  const [progress, setProgress] = useState(0);
+
   useEffect(() => {
-    const timer = setTimeout(() => setProgress(65), 100);
-    return () => clearTimeout(timer);
-  }, []);
+    let newProgress = 0;
+
+    switch (status) {
+      case "todo":
+        newProgress = 5;
+        break;
+      case "done":
+        newProgress = 100;
+        break;
+      default:
+        newProgress = Math.floor(Math.random() * (90 - 6 + 1)) + 6;
+    }
+
+    setProgress(newProgress);
+  }, [status]);
+
+  const statusColor = (status: TaskStatus): string => {
+    switch (status) {
+      case "todo":
+        return "[&>div]:bg-violet-500";
+      case "done":
+        return "[&>div]:bg-green-500";
+      default:
+        return "[&>div]:bg-orange-500";
+    }
+  };
 
   return (
     <div
@@ -25,7 +50,7 @@ const Task = ({ task, onDragStart }: TaskProps) => {
     >
       <h4 className="text-gray-800 font-medium">{task.title}</h4>
       <p>Progress</p>
-      <Progress value={progress} className="w-[60%]" />
+      <Progress value={progress} className={`w-[60%] ${statusColor(status)}`} />
       <div className="flex flex-row justify-between">
         <img src={Avatars} width={130} />
         <div className="flex flex-row gap-5 justify-between">

@@ -44,7 +44,12 @@ const Column = ({
         onDrop={(e) => onDrop(e, status)}
       >
         {tasks.map((task) => (
-          <Task key={task.id} task={task} onDragStart={onDragStart} />
+          <Task
+            key={task.id}
+            task={task}
+            onDragStart={onDragStart}
+            status={status}
+          />
         ))}
       </div>
     </div>
