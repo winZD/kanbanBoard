@@ -77,42 +77,40 @@ const Dashboard = () => {
 
   console.log(tasks);
   return (
-    <div className="flex flex-col w-full h-full">
+    <Tabs defaultValue="list" className="flex flex-col w-full h-full">
       <div className="flex">
         <div className="flex justify-between border-2 w-full">
-          <div className="flex flex-row">
+          <div className="flex flex-col md:flex-row ">
             <p className="bg-red-400">{draggedTaskId}</p>
-            <img src={Placeholder} />
+            <div>
+              <img src={Placeholder} />
+            </div>
             <div className="flex flex-col">
               <span className="text-3xl">Project Planet X</span>
-              <Tabs defaultValue="list">
-                <TabsList className="gap-3 rounded-3xl">
-                  <TabsTrigger value="grid" className="rounded-3xl ">
-                    {" "}
-                    <img src={GridView} alt="" /> Grid View
-                  </TabsTrigger>
-                  <TabsTrigger value="list" className="rounded-3xl">
-                    <img src={ListView} alt="" />
-                    List View
-                  </TabsTrigger>
-                  <TabsTrigger value="column" className="rounded-3xl">
-                    {" "}
-                    <img src={ColumnView} alt="" />
-                    Column View
-                  </TabsTrigger>
-                  <TabsTrigger value="row" className="rounded-3xl">
-                    {" "}
-                    <img src={RowView} alt="" />
-                    Row View
-                  </TabsTrigger>
-                </TabsList>
-                <TabsContent value="grid">
-                  Make changes to your account here.
-                </TabsContent>
-                <TabsContent value="password">
-                  Change your password here.
-                </TabsContent>
-              </Tabs>
+
+              <TabsList className="gap-3 rounded-3xl">
+                <TabsTrigger value="grid" className="rounded-3xl ">
+                  {" "}
+                  <img src={GridView} alt="" /> Grid View
+                </TabsTrigger>
+                <TabsTrigger value="list" className="rounded-3xl">
+                  <img src={ListView} alt="" />
+                  List View
+                </TabsTrigger>
+                <TabsTrigger value="column" className="rounded-3xl">
+                  {" "}
+                  <img src={ColumnView} alt="" />
+                  Column View
+                </TabsTrigger>
+                <TabsTrigger value="row" className="rounded-3xl">
+                  {" "}
+                  <img src={RowView} alt="" />
+                  Row View
+                </TabsTrigger>
+              </TabsList>
+              <TabsContent value="grid">
+                Make changes to your account here.
+              </TabsContent>
             </div>
           </div>
 
@@ -144,24 +142,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <div className="grid md:grid-cols-3 p-2 gap-2">
-        {/*    <Card className=" bg-gray-200 flex flex-col p-2">
-          <div className="flex  flex-row justify-between">
-            <h3>TODO</h3>
-            <button>
-              <Plus />
-            </button>
-          </div>
-          <Column
-            title="To Do"
-            status="todo"
-            tasks={tasks}
-            color="bg-blue-500"
-            onDragStart={handleDragStart}
-            onDragOver={handleDragOver}
-            onDrop={handleDrop}
-          />
-        </Card> */}
+      <TabsContent value="list" className="grid md:grid-cols-3 p-2 gap-2">
         <Column
           title="To Do"
           status="todo"
@@ -191,46 +172,8 @@ const Dashboard = () => {
           onDragOver={handleDragOver}
           onDrop={handleDrop}
         />
-        {/*   <Card className=" bg-gray-200 flex flex-col p-2">
-          <div className="flex  flex-row justify-between">
-            <h3>In progress</h3>
-            <button>
-              <Plus />
-            </button>
-          </div>{" "}
-          {tasks
-            .filter((task) => task.status === "inProgress")
-            .map((task) => (
-              <div
-                key={task.id}
-                className="p-2 bg-white rounded-2xl shadow flex flex-col"
-              >
-                <h4>{task.title}</h4>
-                <p>{task.status}</p>
-              </div>
-            ))}
-        </Card>
-        <Card className=" bg-gray-200 flex flex-col p-2">
-          <div className="flex  flex-row justify-between">
-            <h3>Done</h3>
-            <button>
-              <Plus />
-            </button>
-          </div>
-          {tasks
-            .filter((task) => task.status === "done")
-            .map((task) => (
-              <div
-                key={task.id}
-                className="p-2 bg-white rounded-2xl shadow flex flex-col"
-              >
-                <h4>{task.title}</h4>
-                <p>{task.status}</p>
-              </div>
-            ))}
-        </Card> */}
-      </div>
-    </div>
+      </TabsContent>
+    </Tabs>
   );
 };
 

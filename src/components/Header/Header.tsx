@@ -1,4 +1,5 @@
 import { Plus, Search } from "lucide-react";
+import Avatars from "../../assets/AvatarGroup.png";
 
 import Vector from "../../assets/Vector.svg";
 import {
@@ -36,10 +37,15 @@ const Header = () => {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      <Search />
-      <button className="flex items-center gap-2 px-4 py-2 rounded-3xl bg-red-500 text-white border-2 border-red-500 hover:bg-red-600 transition">
-        Invite <Plus size={16} />
-      </button>
+      <div className="flex">
+        <Search />
+        <div>
+          <img src={Avatars} alt="" />
+        </div>
+        <button className="flex items-center gap-2 px-4 py-2 rounded-3xl bg-red-500 text-white border-2 border-red-500 hover:bg-red-600 transition">
+          Invite <Plus size={16} />
+        </button>
+      </div>
     </div>
   );
 };
