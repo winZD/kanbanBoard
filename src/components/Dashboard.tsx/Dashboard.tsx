@@ -35,6 +35,7 @@ const Dashboard = () => {
     setDraggedTaskId(taskId);
     e.dataTransfer.setData("taskId", taskId);
     e.dataTransfer.effectAllowed = "move";
+    (e.currentTarget as HTMLElement).style.background = "red";
   };
 
   const handleDragOver = (e: React.DragEvent) => {
@@ -73,6 +74,7 @@ const Dashboard = () => {
       <div className="flex">
         <div className="flex justify-between border-2 w-full">
           <div className="flex flex-row">
+            <p className="bg-red-400">{draggedTaskId}</p>
             <img src={Placeholder} />
             <div className="flex flex-col">
               <h1>Project Planet X</h1>

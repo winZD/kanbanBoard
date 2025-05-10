@@ -6,7 +6,7 @@ import title from "../../assets/slothui.png";
 const Sidebar = () => {
   return (
     <>
-      <div className="hidden md:flex flex-col  nesto p-4">
+      <div className="hidden md:flex flex-col  p-4">
         <div className="relative">
           <img src={Vector} alt="" />
         </div>
