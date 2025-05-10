@@ -117,27 +117,36 @@ const Dashboard = () => {
             </div>
             <div className="flex justify-between">
               <TabsList className="w-[531px] h-[48px] rounded-full p-[4px]">
-                <TabsTrigger value="grid" className="rounded-3xl ">
+                <TabsTrigger
+                  value="grid"
+                  className="rounded-3xl cursor-pointer"
+                >
                   {" "}
                   <img src={GridView} alt="" /> Grid View
                 </TabsTrigger>
-                <TabsTrigger value="list" className="rounded-3xl">
+                <TabsTrigger
+                  value="list"
+                  className="rounded-3xl cursor-pointer"
+                >
                   <img src={ListView} alt="" />
                   List View
                 </TabsTrigger>
-                <TabsTrigger value="column" className="rounded-3xl">
+                <TabsTrigger
+                  value="column"
+                  className="rounded-3xl cursor-pointer"
+                >
                   {" "}
                   <img src={ColumnView} alt="" />
                   Column View
                 </TabsTrigger>
-                <TabsTrigger value="row" className="rounded-3xl">
+                <TabsTrigger value="row" className="rounded-3xl cursor-pointer">
                   {" "}
                   <img src={RowView} alt="" />
                   Row View
                 </TabsTrigger>
               </TabsList>
               <button
-                className="bg-[#4F46E5] w-[161px] h-[48px] min-h-[48px] gap-[10px] px-[20px] py-[12px] 
+                className="bg-[#4F46E5] cursor-pointer w-[161px] h-[48px] min-h-[48px] gap-[10px] px-[20px] py-[12px] 
  justify-center text-white rounded-full hidden md:flex font-bold text-[16px] leading-[22px] tracking-[-0.007em]
 "
               >
