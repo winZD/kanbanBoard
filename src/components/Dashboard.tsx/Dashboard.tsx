@@ -111,7 +111,7 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="flex justify-between">
-              <TabsList className="gap-3 rounded-3xl">
+              <TabsList className="w-[531px] h-[48px] rounded-full p-[4px]">
                 <TabsTrigger value="grid" className="rounded-3xl ">
                   {" "}
                   <img src={GridView} alt="" /> Grid View
@@ -131,7 +131,11 @@ const Dashboard = () => {
                   Row View
                 </TabsTrigger>
               </TabsList>
-              <button className="bg-violet-700 p-2 justify-center text-white rounded-3xl hidden md:flex">
+              <button
+                className="bg-[#4F46E5] w-[161px] h-[48px] min-h-[48px] gap-[10px] px-[20px] py-[12px] 
+ justify-center text-white rounded-full hidden md:flex font-bold text-[16px] leading-[22px] tracking-[-0.007em]
+"
+              >
                 Export data <UploadCloud />
               </button>
             </div>

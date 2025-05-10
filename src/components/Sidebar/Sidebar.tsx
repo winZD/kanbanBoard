@@ -12,14 +12,13 @@ import notification from "../../assets/notification.svg";
 import settings from "../../assets/settings.svg";
 import avatar from "../../assets/Avatar.png";
 
-// sidebar icon image array
 const sidebarIconsTop = [s, home, stats, user, schedule, thunder, notification];
 const sidebarIconsBottom = [settings, avatar];
 
 const Sidebar = () => {
   return (
     <>
-      <div className="hidden md:flex flex-col p-4">
+      <div className="hidden md:flex flex-col p-4 w-[80px] gap-[368px]  border-r-[1px] pt-[24px] pr-[16px] pb-[24px] pl-[16px]">
         <div className="flex flex-col justify-between h-full items-center">
           <div className="flex flex-col gap-5">
             {sidebarIconsTop.map((icon, index) => (
