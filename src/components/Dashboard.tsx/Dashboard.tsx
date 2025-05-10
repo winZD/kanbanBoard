@@ -78,16 +78,39 @@ const Dashboard = () => {
   console.log(tasks);
   return (
     <Tabs defaultValue="list" className="flex flex-col w-full h-full">
-      <div className="flex">
-        <div className="flex justify-between border-2 w-full">
-          <div className="flex flex-col md:flex-row ">
-            <p className="bg-red-400">{draggedTaskId}</p>
-            <div>
-              <img src={Placeholder} />
+      <div className="flex flex-col">
+        <div className="flex flex-col border-2 w-full md:flex-row">
+          <div>
+            <img src={Placeholder} />
+          </div>
+          <div className="flex flex-col gap-3 w-full justify-between">
+            <div className="flex flex-col md:flex-row justify-between gap-2 w-full">
+              <span className="text-3xl">Project Planet X</span>{" "}
+              <div className="flex flex-col justify-center">
+                <div className="flex flex-row gap-2 items-center">
+                  <button className="flex flex-row gap-1 ">
+                    <div className="self-center">
+                      <img src={GridView} alt="" />
+                    </div>{" "}
+                    Grid view
+                  </button>
+                  <button className="flex flex-row gap-1">
+                    <div className="self-center">
+                      <img src={Filter} alt="" />
+                    </div>
+                    Filter
+                  </button>
+                  <button className="flex flex-row gap-1">
+                    {" "}
+                    <div className="self-center">
+                      <img src={Sort} alt="" />
+                    </div>
+                    Sort
+                  </button>
+                </div>
+              </div>
             </div>
-            <div className="flex flex-col">
-              <span className="text-3xl">Project Planet X</span>
-
+            <div className="flex justify-between">
               <TabsList className="gap-3 rounded-3xl">
                 <TabsTrigger value="grid" className="rounded-3xl ">
                   {" "}
@@ -108,37 +131,10 @@ const Dashboard = () => {
                   Row View
                 </TabsTrigger>
               </TabsList>
-              <TabsContent value="grid">
-                Make changes to your account here.
-              </TabsContent>
-            </div>
-          </div>
-
-          <div className="flex flex-col justify-center">
-            <div className="flex flex-row gap-2">
-              <button className="flex flex-row gap-1 ">
-                <div>
-                  <img src={GridView} alt="" />
-                </div>{" "}
-                Grid view
-              </button>
-              <button className="flex flex-row gap-1">
-                <div>
-                  <img src={Filter} alt="" />
-                </div>
-                Filter
-              </button>
-              <button className="flex flex-row gap-1">
-                {" "}
-                <div>
-                  <img src={Sort} alt="" />
-                </div>
-                Sort
+              <button className="bg-violet-700 p-2 justify-center text-white rounded-3xl hidden md:flex">
+                Export data <UploadCloud />
               </button>
             </div>
-            <button className="bg-violet-700 p-2 justify-center text-white rounded-3xl flex flex-row">
-              Export data <UploadCloud />
-            </button>
           </div>
         </div>
       </div>
