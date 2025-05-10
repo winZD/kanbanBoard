@@ -78,14 +78,19 @@ const Dashboard = () => {
   console.log(tasks);
   return (
     <Tabs defaultValue="list" className="flex flex-col w-full h-full">
-      <div className="flex flex-col">
-        <div className="flex flex-col border-2 w-full md:flex-row">
-          <div>
-            <img src={Placeholder} />
+      <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col w-full md:flex-row p-6">
+          <div className="self-center">
+            <img src={Placeholder} height={96} width={96} />
           </div>
-          <div className="flex flex-col gap-3 w-full justify-between">
+          <div className="flex p-[4px] flex-col gap-3 w-full justify-between">
             <div className="flex flex-col md:flex-row justify-between gap-2 w-full">
-              <span className="text-3xl">Project Planet X</span>{" "}
+              <span
+                className="font-sans font-bold text-[30px] leading-[38px] tracking-[-0.013em]
+"
+              >
+                Project PlanetX
+              </span>{" "}
               <div className="flex flex-col justify-center">
                 <div className="flex flex-row gap-2 items-center">
                   <button className="flex flex-row gap-1 ">
@@ -142,12 +147,15 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <TabsContent value="list" className="grid md:grid-cols-3 p-2 gap-2">
+      <TabsContent
+        value="list"
+        className="grid md:grid-cols-2 lg:grid-cols-3 p-2 gap-2"
+      >
         <Column
           title="To Do"
           status="todo"
           tasks={todoTasks}
-          color="bg-blue-500"
+          color="bg-[#4F46E5]"
           onDragStart={handleDragStart}
           onDragOver={handleDragOver}
           onDrop={handleDrop}

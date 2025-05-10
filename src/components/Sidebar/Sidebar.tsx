@@ -18,14 +18,15 @@ const sidebarIconsBottom = [settings, avatar];
 const Sidebar = () => {
   return (
     <>
-      <div className="hidden md:flex flex-col p-4 w-[80px] gap-[368px]  border-r-[1px] pt-[24px] pr-[16px] pb-[24px] pl-[16px]">
+      <div className="hidden md:flex flex-col p-4 w-[80px] border-r-[1px] pt-[24px] pr-[16px] pb-[24px] pl-[16px]">
         <div className="flex flex-col justify-between h-full items-center">
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-14">
             {sidebarIconsTop.map((icon, index) => (
               <div key={index}>
                 <img
                   src={icon}
                   alt=""
+                  width={19}
                   className={
                     index === 0
                       ? "bg-violet-800 rounded-xl bg-gradient-to-br from-purple-200 via-indigo-500 to-violet-700"

@@ -12,7 +12,7 @@ import {
 
 const Header = () => {
   return (
-    <div className="flex  w-full flex-row justify-between items-start sm:items-center  h-[80px] gap-[10px] border-b-[1px] pt-[20px] pr-[32px] pb-[20px] pl-[32px]">
+    <div className="flex w-full flex-row justify-between items-start sm:items-center  h-[80px] gap-[10px] border-b-[1px] pt-[20px] pr-[32px] pb-[20px] pl-[32px]">
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>

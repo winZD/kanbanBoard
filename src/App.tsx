@@ -7,7 +7,7 @@ import { TasksProvider } from "./context/taskContext";
 function App() {
   return (
     <TasksProvider>
-      <div className="flex flex-col md:flex-row min-h-screen w-full">
+      <div className="flex border-1 flex-col md:flex-row min-h-screen w-full">
         <Sidebar />
         <div className="flex flex-col w-full">
           <Header />
