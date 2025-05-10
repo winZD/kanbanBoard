@@ -61,7 +61,7 @@ const Task = ({ task, onDragStart, status }: TaskProps) => {
           </button>
         )}
       </div>
-      <h4 className="text-[#1E293B] first-letter:uppercase font-bold text-[16px] leading-[22px] tracking-[-0.007em]">
+      <h4 className="text-[#1E293B] first-letter:uppercase font-semibold text-[16px] leading-[22px] tracking-[-0.007em]">
         {task.title}
       </h4>
       <div>
@@ -71,7 +71,9 @@ const Task = ({ task, onDragStart, status }: TaskProps) => {
             value={progress}
             className={`w-[60%] ${statusColor(status)}`}
           />
-          <span className=" font-bold text-[14px] leading-[20px] tracking-[-0.006em]">{`${progress}%`}</span>
+          <span className=" font-semibold text-[14px] leading-[20px] tracking-[-0.006em]">{`${
+            progress === 100 ? "Done" : progress
+          }%`}</span>
         </div>
       </div>
       <div className="flex flex-row justify-between">

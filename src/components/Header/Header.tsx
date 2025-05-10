@@ -42,7 +42,7 @@ const Header = () => {
         <div>
           <img src={Avatars} alt="" />
         </div>
-        <button className="flex items-center gap-2 px-4 py-2 rounded-3xl bg-red-500 text-white border-2 border-red-500 hover:bg-red-600 transition">
+        <button className="flex items-center cursor-pointer  gap-2 px-4 py-2 rounded-3xl bg-gray-50  border-2 border-gray-100 hover:bg-gray-300 transition">
           Invite <Plus size={16} />
         </button>
       </div>

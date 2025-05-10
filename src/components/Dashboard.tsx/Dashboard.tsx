@@ -86,7 +86,7 @@ const Dashboard = () => {
           <div className="flex p-[4px] flex-col gap-3 w-full justify-between">
             <div className="flex flex-col md:flex-row justify-between gap-2 w-full">
               <span
-                className="font-sans font-bold text-[30px] leading-[38px] tracking-[-0.013em]
+                className="font-sans font-semibold text-[30px] leading-[38px] tracking-[-0.013em]
 "
               >
                 Project PlanetX
@@ -147,7 +147,7 @@ const Dashboard = () => {
               </TabsList>
               <button
                 className="bg-[#4F46E5] cursor-pointer w-[161px] h-[48px] min-h-[48px] gap-[10px] px-[20px] py-[12px] 
- justify-center text-white rounded-full hidden md:flex font-bold text-[16px] leading-[22px] tracking-[-0.007em]
+ justify-center text-white rounded-full hidden md:flex font-semibold text-[16px] leading-[22px] tracking-[-0.007em]
 "
               >
                 Export data <UploadCloud />
