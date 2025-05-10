@@ -1,11 +1,18 @@
-import { Grid, Plus, UploadCloud } from "lucide-react";
+import { UploadCloud } from "lucide-react";
 import Placeholder from "../../assets/PlaceholderLogo.svg";
-import { Card } from "../ui/card";
+import GridView from "../../assets/grid_view.svg";
+import ListView from "../../assets/list_view.svg";
+import RowView from "../../assets/row_view.svg";
+import ColumnView from "../../assets/column_view.svg";
+import Sort from "../../assets/sort.svg";
+import Filter from "../../assets/filter.svg";
+
 import { useEffect, useState } from "react";
 import { fetchTasks } from "../../services/api";
 import type { Task, TaskStatus } from "../../types";
 import Column from "../Column/Column";
 import { useTasks } from "../../hooks/useTasks";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 const Dashboard = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   useEffect(() => {
@@ -77,33 +84,59 @@ const Dashboard = () => {
             <p className="bg-red-400">{draggedTaskId}</p>
             <img src={Placeholder} />
             <div className="flex flex-col">
-              <h1>Project Planet X</h1>
-              <Card className="p-2 flex flex-row justify-center">
-                <button className="flex flex-row">
-                  <Grid />
-                  Grid View
-                </button>
-                <button className="flex flex-row">
-                  <Grid />
-                  List View
-                </button>
-                <button className="flex flex-row">
-                  <Grid />
-                  Column View
-                </button>
-                <button className="flex flex-row">
-                  <Grid />
-                  Row View
-                </button>
-              </Card>
+              <span className="text-3xl">Project Planet X</span>
+              <Tabs defaultValue="list">
+                <TabsList className="gap-3 rounded-3xl">
+                  <TabsTrigger value="grid" className="rounded-3xl ">
+                    {" "}
+                    <img src={GridView} alt="" /> Grid View
+                  </TabsTrigger>
+                  <TabsTrigger value="list" className="rounded-3xl">
+                    <img src={ListView} alt="" />
+                    List View
+                  </TabsTrigger>
+                  <TabsTrigger value="column" className="rounded-3xl">
+                    {" "}
+                    <img src={ColumnView} alt="" />
+                    Column View
+                  </TabsTrigger>
+                  <TabsTrigger value="row" className="rounded-3xl">
+                    {" "}
+                    <img src={RowView} alt="" />
+                    Row View
+                  </TabsTrigger>
+                </TabsList>
+                <TabsContent value="grid">
+                  Make changes to your account here.
+                </TabsContent>
+                <TabsContent value="password">
+                  Change your password here.
+                </TabsContent>
+              </Tabs>
             </div>
           </div>
 
           <div className="flex flex-col justify-center">
-            <div className="flex flex-row">
-              <button>Grid view</button>
-              <button>Grid view</button>
-              <button>Grid view</button>
+            <div className="flex flex-row gap-2">
+              <button className="flex flex-row gap-1 ">
+                <div>
+                  <img src={GridView} alt="" />
+                </div>{" "}
+                Grid view
+              </button>
+              <button className="flex flex-row gap-1">
+                <div>
+                  <img src={Filter} alt="" />
+                </div>
+                Filter
+              </button>
+              <button className="flex flex-row gap-1">
+                {" "}
+                <div>
+                  <img src={Sort} alt="" />
+                </div>
+                Sort
+              </button>
             </div>
             <button className="bg-violet-700 p-2 justify-center text-white rounded-3xl flex flex-row">
               Export data <UploadCloud />
