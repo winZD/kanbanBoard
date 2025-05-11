@@ -116,30 +116,41 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="flex justify-between">
-              <TabsList className="w-[531px] h-[48px] rounded-full p-[4px]">
+              <TabsList className="w-[531px] h-[48px] bg-white md:bg-gray-100 rounded-full p-0 md:p-[4px]">
                 <TabsTrigger
                   value="grid"
-                  className="rounded-3xl cursor-pointer"
+                  className="flex items-center gap-1 bg-transparent border-0 rounded-none h-full !outline-none !shadow-none !ring-0 
+    border-b-2 border-transparent data-[state=active]:bg-transparent  data-[state=active]:border-primary cursor-pointer
+    md:rounded-3xl lg:cursor-pointer p-0 md:border-2"
                 >
                   {" "}
                   <img src={GridView} alt="" /> Grid View
                 </TabsTrigger>
                 <TabsTrigger
                   value="list"
-                  className="rounded-3xl cursor-pointer"
+                  className="flex items-center gap-1 bg-transparent border-0 rounded-none  h-full !outline-none !shadow-none !ring-0 
+    border-b-2 border-transparent data-[state=active]:bg-transparent  data-[state=active]:border-primary cursor-pointer
+    md:rounded-3xl lg:cursor-pointer md:border-2"
                 >
                   <img src={ListView} alt="" />
                   List View
                 </TabsTrigger>
                 <TabsTrigger
                   value="column"
-                  className="rounded-3xl cursor-pointer"
+                  className="flex items-center gap-1 bg-transparent border-0 rounded-none  h-full !outline-none !shadow-none !ring-0 
+    border-b-2 border-transparent data-[state=active]:bg-transparent  data-[state=active]:border-primary cursor-pointer
+    md:rounded-3xl lg:cursor-pointer md:border-2"
                 >
                   {" "}
                   <img src={ColumnView} alt="" />
                   Column View
                 </TabsTrigger>
-                <TabsTrigger value="row" className="rounded-3xl cursor-pointer">
+                <TabsTrigger
+                  value="row"
+                  className="flex items-center gap-1 bg-transparent border-0 rounded-none  h-full !outline-none !shadow-none !ring-0 
+    border-b-2 border-transparent data-[state=active]:bg-transparent  data-[state=active]:border-primary cursor-pointer
+    md:rounded-3xl lg:cursor-pointer md:border-2"
+                >
                   {" "}
                   <img src={RowView} alt="" />
                   Row View
