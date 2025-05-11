@@ -65,7 +65,7 @@ export default defineConfig({
       workbox: {
         runtimeCaching: [
           {
-            urlPattern: /^https:\/\/your-api\.com\/.*/i,
+            urlPattern: /^https:\/\/jsonplaceholder\.typicode\.com\/todos.*$/i,
             handler: "NetworkFirst",
             options: {
               cacheName: "api-cache",
