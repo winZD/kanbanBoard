@@ -38,7 +38,7 @@ const Sidebar = () => {
           </div>
           <div className="flex flex-col gap-3">
             {sidebarIconsBottom.map((icon, index) => (
-              <div key={index}>
+              <div key={index} className="flex justify-center">
                 <img src={icon} alt="" />
               </div>
             ))}
