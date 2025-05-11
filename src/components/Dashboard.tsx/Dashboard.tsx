@@ -80,8 +80,8 @@ const Dashboard = () => {
     <Tabs defaultValue="list" className="flex flex-col w-full h-full">
       <div className="flex flex-col justify-center items-center">
         <div className="flex flex-col w-full md:flex-row p-6">
-          <div className="self-center">
-            <img src={Placeholder} height={96} width={96} />
+          <div className="self-start md:self-center">
+            <img src={Placeholder} className="max-w-[96px]" />
           </div>
           <div className="flex p-[4px] flex-col gap-3 w-full justify-between">
             <div className="flex flex-col md:flex-row justify-between gap-2 w-full">
