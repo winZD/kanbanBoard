@@ -28,7 +28,7 @@ const Dashboard = () => {
     getTasks();
   }, []);
   const { state, moveTask } = useTasks();
-  const [draggedTaskId, setDraggedTaskId] = useState<string | null>(null);
+  //const [draggedTaskId, setDraggedTaskId] = useState<string | null>(null);
 
   // Filter tasks by status
   const todoTasks = state.tasks.filter((task: Task) => task.status === "todo");
@@ -39,7 +39,7 @@ const Dashboard = () => {
 
   // Drag handlers
   const handleDragStart = (e: React.DragEvent, taskId: string) => {
-    setDraggedTaskId(taskId);
+    //setDraggedTaskId(taskId);
     e.dataTransfer.setData("taskId", taskId);
     e.dataTransfer.effectAllowed = "move";
     (e.currentTarget as HTMLElement).style.background = "red";
@@ -58,7 +58,7 @@ const Dashboard = () => {
       moveTask(taskId, status);
     }
 
-    setDraggedTaskId(null);
+    //setDraggedTaskId(null);
   };
 
   if (state.isLoading) {
