@@ -1,4 +1,5 @@
 import "./App.css";
+
 import Dashboard from "./components/Dashboard.tsx/Dashboard";
 import Header from "./components/Header/Header";
 import Sidebar from "./components/Sidebar/Sidebar";
@@ -13,6 +14,7 @@ function App() {
           <Header />
           <Dashboard />
         </div>
+        <OfflineBanner />
       </div>
     </TasksProvider>
   );
