@@ -1,4 +1,5 @@
 import "./App.css";
+import { OfflineBanner } from "./components/Banner/OfflineBanner";
 
 import Dashboard from "./components/Dashboard.tsx/Dashboard";
 import Header from "./components/Header/Header";
