@@ -11,6 +11,7 @@ import schedule from "../../assets/schedule.svg";
 import notification from "../../assets/notification.svg";
 import settings from "../../assets/settings.svg";
 import avatar from "../../assets/Avatar.png";
+import { NavLink } from "react-router-dom";
 
 const sidebarIconsTop = [s, home, stats, user, schedule, thunder, notification];
 const sidebarIconsBottom = [settings, avatar];
@@ -39,7 +40,13 @@ const Sidebar = () => {
           <div className="flex flex-col gap-3">
             {sidebarIconsBottom.map((icon, index) => (
               <div key={index} className="flex justify-center">
-                <img src={icon} alt="" />
+                {index === 0 ? (
+                  <NavLink to={"/settings"}>
+                    <img src={icon} alt="" />
+                  </NavLink>
+                ) : (
+                  <img src={icon} alt="" />
+                )}
               </div>
             ))}
           </div>
