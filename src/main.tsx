@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { RequireAuth } from "./components/auth/auth.tsx";
+import Login from "./components/Login/Login.tsx";
 
 const router = createBrowserRouter([
   {
@@ -20,7 +21,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/login",
-    element: <div>You are in LOGIN mockup</div>,
+    element: <Login />,
   },
 ]);
 

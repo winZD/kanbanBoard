@@ -1,54 +1,33 @@
 import type { PropsWithChildren } from "react";
 import { Navigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 
-import axios from "axios";
+interface JwtPayload {
+  exp?: number; // expiration timestamp (optional but commonly used)
+  // add other fields you expect in your token
+  [key: string]: unknown;
+}
 
-/* // Dummy JWT token generation
-const generateDummyToken = () => {
-  // This creates a simple dummy JWT structure (not cryptographically valid)
-  const header = btoa(JSON.stringify({ alg: "HS256", typ: "JWT" }));
-  const payload = btoa(
-    JSON.stringify({
-      sub: "user123",
-      name: "Test User",
-      iat: Math.floor(Date.now() / 1000),
-      exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24, // Expires in 24 hours
-    })
-  );
-  const signature = btoa("dummy-signature");
-  return `${header}.${payload}.${signature}`;
-};
-
-// Set the token in localStorage if it doesn't exist
-const initializeToken = () => {
-  if (!localStorage.getItem("token")) {
-    localStorage.setItem("token", generateDummyToken());
-  }
-};
-
-// Initialize token on load
-initializeToken();
-
-// Configure Axios interceptor to add Authorization header
-axios.interceptors.request.use(
-  (config: any) => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      config.headers.Authorization = `Bearer ${token}`;
-    }
-    return config;
-  },
-  (error: any) => {
-    return Promise.reject(error);
-  }
-);
- */
 export const RequireAuth = ({ children }: PropsWithChildren) => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("at");
 
   if (!token) {
-    // Redirect to login if not authenticated
     return <Navigate to="/login" replace />;
   }
+
+  try {
+    const decoded = jwtDecode<JwtPayload>(token);
+    console.log("Decoded Token:", decoded);
+
+    // Optional: check if the token is expired
+    if (decoded.exp && Date.now() >= decoded.exp * 1000) {
+      console.warn("Token expired");
+      return <Navigate to="/login" replace />;
+    }
+  } catch (error) {
+    console.error("Invalid token", error);
+    return <Navigate to="/login" replace />;
+  }
+
   return children;
 };
