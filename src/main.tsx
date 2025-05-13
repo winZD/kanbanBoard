@@ -32,7 +32,5 @@ createRoot(document.getElementById("root")!).render(
 );
 
 if ("serviceWorker" in navigator) {
-  window.addEventListener("load", () => {
-    console.log("Service worker is supported");
-  });
+  window.addEventListener("load", () => {});
 }

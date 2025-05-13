@@ -16,7 +16,6 @@ export const RequireAuth = ({ children }: PropsWithChildren) => {
 
   try {
     const decoded = jwtDecode<JwtPayload>(token);
-    console.log("Decoded Token:", decoded);
 
     if (decoded.exp && Date.now() >= decoded.exp * 1000) {
       console.warn("Token expired");
