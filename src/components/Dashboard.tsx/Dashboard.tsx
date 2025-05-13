@@ -7,28 +7,23 @@ import ColumnView from "../../assets/column_view.svg";
 import Sort from "../../assets/sort.svg";
 import Filter from "../../assets/filter.svg";
 
-import { useEffect, useState } from "react";
-import { fetchTasks } from "../../services/api";
 import type { Task, TaskStatus } from "../../types";
 import Column from "../Column/Column";
 import { useTasks } from "../../hooks/useTasks";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 const Dashboard = () => {
-  const [tasks, setTasks] = useState<Task[]>([]);
-  useEffect(() => {
+  /*  useEffect(() => {
     const getTasks = async () => {
       try {
-        const data = await fetchTasks();
-        setTasks(data);
+        await fetchTasks();
       } catch (error) {
         console.error("Failed to fetch tasks:", error);
       }
     };
 
     getTasks();
-  }, []);
+  }, []); */
   const { state, moveTask } = useTasks();
-  //const [draggedTaskId, setDraggedTaskId] = useState<string | null>(null);
 
   // Filter tasks by status
   const todoTasks = state.tasks.filter((task: Task) => task.status === "todo");
@@ -39,7 +34,6 @@ const Dashboard = () => {
 
   // Drag handlers
   const handleDragStart = (e: React.DragEvent, taskId: string) => {
-    //setDraggedTaskId(taskId);
     e.dataTransfer.setData("taskId", taskId);
     e.dataTransfer.effectAllowed = "move";
     (e.currentTarget as HTMLElement).style.background = "red";
@@ -75,7 +69,6 @@ const Dashboard = () => {
     );
   }
 
-  console.log(tasks);
   return (
     <Tabs defaultValue="list" className="flex flex-col w-full h-full">
       <div className="flex flex-col justify-center items-center">

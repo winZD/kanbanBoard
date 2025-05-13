@@ -43,7 +43,7 @@ const Header = () => {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      <div className="flex">
+      <div className="flex justify-center items-center">
         <Search />
         <div>
           <img src={Avatars} alt="" />
