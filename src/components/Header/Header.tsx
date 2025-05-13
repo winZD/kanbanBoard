@@ -1,4 +1,4 @@
-import { Plus, Search } from "lucide-react";
+import { ChevronLeft, Plus, Search } from "lucide-react";
 import Avatars from "../../assets/AvatarGroup.png";
 
 import Vector from "../../assets/Vector.svg";
@@ -14,7 +14,13 @@ const Header = () => {
   return (
     <div className="flex w-full flex-row justify-between items-start sm:items-center  h-[80px] gap-[10px] border-b-[1px] pt-[20px] pr-[32px] pb-[20px] pl-[32px]">
       <Breadcrumb>
-        <BreadcrumbList>
+        <BreadcrumbList className="inline lg:hidden">
+          <BreadcrumbItem>
+            <ChevronLeft />
+            <BreadcrumbLink href="/dashboard">Back To Project</BreadcrumbLink>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+        <BreadcrumbList className="hidden lg:flex">
           <BreadcrumbItem>
             <BreadcrumbLink href="/">
               {" "}
