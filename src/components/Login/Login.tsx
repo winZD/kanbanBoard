@@ -1,51 +1,65 @@
-import type { FormEvent } from "react";
+import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+interface LoginFormInputs {
+  username: string;
+  password: string;
+}
+
+// ✅ Define Yup validation schema
+const schema = yup.object({
+  username: yup.string().required("Username is required"),
+  password: yup.string().required("Password is required"),
+});
 
 const Login = () => {
   const navigate = useNavigate();
-  const authenticate = async (
-    username: string,
-    password: string
-  ): Promise<void> => {
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<LoginFormInputs>({
+    resolver: yupResolver(schema),
+    defaultValues: {
+      username: "emilys",
+      password: "emilyspass",
+    },
+  });
+
+  const authenticate = async (data: LoginFormInputs): Promise<void> => {
     try {
       const response = await fetch("https://dummyjson.com/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          username,
-          password,
+          ...data,
           expiresInMins: 30,
         }),
       });
 
-      const data = await response.json();
+      const resData = await response.json();
 
-      if (data) {
-        localStorage.setItem("at", data.accessToken);
-        localStorage.setItem("rt", data.refreshToken);
+      if (resData && resData.accessToken) {
+        localStorage.setItem("at", resData.accessToken);
+        localStorage.setItem("rt", resData.refreshToken);
         navigate("/settings");
+      } else {
+        console.error("Login failed", resData);
       }
     } catch (error) {
       console.error("Error fetching user:", error);
     }
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>): void => {
-    event.preventDefault();
-
-    const formData = new FormData(event.currentTarget);
-    const username = formData.get("username") as string;
-    const password = formData.get("password") as string;
-
-    authenticate(username, password);
-  };
   return (
     <div className="h-full flex justify-center w-full bg-blue-200">
       <div className="bg-white p-8 rounded-lg shadow-lg my-auto">
         <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
           Login form
         </h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit(authenticate)}>
           <div className="mb-4">
             <label htmlFor="username" className="block text-gray-700">
               Username
@@ -53,13 +67,14 @@ const Login = () => {
             <input
               type="text"
               id="username"
-              name="username"
-              readOnly
-              value={"emilys"}
-              placeholder="Enter your email"
+              {...register("username")}
               className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
             />
+            {errors.username && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.username.message}
+              </p>
+            )}
           </div>
 
           <div className="mb-6">
@@ -69,13 +84,14 @@ const Login = () => {
             <input
               type="password"
               id="password"
-              readOnly
-              name="password"
-              value={"emilyspass"}
-              placeholder="Enter your password"
+              {...register("password")}
               className="w-full p-3 mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              required
             />
+            {errors.password && (
+              <p className="text-red-500 text-sm mt-1">
+                {errors.password.message}
+              </p>
+            )}
           </div>
 
           <button
