@@ -7,7 +7,6 @@ interface LoginFormInputs {
   password: string;
 }
 
-// ✅ Define Yup validation schema
 const schema = yup.object({
   username: yup.string().required("Username is required"),
   password: yup.string().required("Password is required"),
