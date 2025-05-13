@@ -169,7 +169,7 @@ const Dashboard = () => {
       </div>
       <TabsContent
         value="list"
-        className="grid md:grid-cols-2 lg:grid-cols-3 p-2 gap-2"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 p-2 gap-2"
       >
         <Column
           title="To Do"
