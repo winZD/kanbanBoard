@@ -2,6 +2,7 @@ import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import api from "../../services/interceptorExample";
 interface LoginFormInputs {
   username: string;
   password: string;
@@ -29,16 +30,12 @@ const Login = () => {
 
   const authenticate = async (data: LoginFormInputs): Promise<void> => {
     try {
-      const response = await fetch("https://dummyjson.com/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          ...data,
-          expiresInMins: 30,
-        }),
+      const response = await api.post("/auth/login", {
+        ...data,
+        expiresInMins: 30,
       });
 
-      const resData = await response.json();
+      const resData = response.data;
 
       if (resData && resData.accessToken) {
         localStorage.setItem("at", resData.accessToken);
@@ -53,7 +50,7 @@ const Login = () => {
   };
 
   return (
-    <div className="h-full flex justify-center w-full bg-blue-200">
+    <div className="min-h-screen flex justify-center w-full bg-blue-200 ">
       <div className="bg-white p-8 rounded-lg shadow-lg my-auto">
         <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
           Login form
